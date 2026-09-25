@@ -214,4 +214,10 @@ plt.ylabel("Number of Employees")
 plt.xticks(rotation=45)
 plt.tight_layout()
 
-plt.show()
+# plt.show()
+
+# Department Salary statistics
+department_salary_stats = df.groupby("Department")["Salary"].agg(["mean", "std", "min", "max"])
+
+print("\n Department Salary statistics:")
+print(department_salary_stats)
