@@ -221,3 +221,21 @@ department_salary_stats = df.groupby("Department")["Salary"].agg(["mean", "std",
 
 print("\n Department Salary statistics:")
 print(department_salary_stats)
+
+# Experience vs Salary Visualization
+# Scatter plot of Experience vs Salary
+plt.figure(figsize=(10, 6))
+
+sns.scatterplot(
+    data=df,
+    x="Experience_Years",
+    y="Salary",
+    hue="Department",
+    palette="Set1"
+)
+
+plt.title("Experience vs Salary by Department")
+plt.xlabel("Experience (Years)")
+plt.ylabel("Salary")
+
+plt.show()
