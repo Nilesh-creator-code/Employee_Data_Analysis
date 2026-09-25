@@ -1,3 +1,4 @@
+from matplotlib import colors
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -76,4 +77,141 @@ print("Performance:", (df["Performance_Score"] < 0).sum())
 
 # Now i perfrom statical analysis on the dataset
 print("\nStatistical Analysis:")
-print(df.describe())
+# print(df.describe())
+
+print("\nIndividual statistics")
+print("Count of Salary: ", df["Salary"].count())
+print("Average Salary: ", df["Salary"].mean())
+
+print("Median Salary: ", df["Salary"].median())
+
+print("Minimum Salary: ", df["Salary"].min())
+
+print("Maximum Salary: ", df["Salary"].max())
+
+print("Standard Deviation of Salary: ", df["Salary"].std())
+
+print("Variance of Salary: ", df["Salary"].var())
+
+print("Skewness of Salary: ", df["Salary"].skew())
+
+print("Average Performance Score: ", df["Performance_Score"].mean())
+print("Median Performance Score: ", df["Performance_Score"].median())
+print("Minimum Performance Score: ", df["Performance_Score"].min())
+print("Maximum Performance Score: ", df["Performance_Score"].max())
+
+print("Average Experience Years: ", df["Experience_Years"].mean())
+print("Median Experience Years: ", df["Experience_Years"].median())
+print("Minimum Experience Years: ", df["Experience_Years"].min())
+print("Maximum Experience Years: ", df["Experience_Years"].max())
+
+
+
+print("\n Highest-paid employees:")
+highest_paid = df.sort_values(by="Salary", ascending=False).head(10)
+
+print(highest_paid.head(10))
+
+
+
+
+# Lowest-paid employees
+print("\n Lowest-paid employees:")
+lowest_paid = df.sort_values(by="Salary", ascending=True).head(10)
+
+print(lowest_paid.head(10))
+
+# Display selected columns
+print(lowest_paid[
+    [
+        "Employee_ID",
+        "Gender",
+        "Age",
+        "Salary",
+        "Experience_Years",
+        "Performance_Score"
+    ]
+])
+
+
+# Salary distribution
+# print("\n Salary distribution:")
+# plt.figure(figsize=(10, 6))
+# sns.histplot(df["Salary"], bins=30, kde=True, color="red")   
+# plt.title("Salary Distribution")
+# plt.xlabel("Salary")
+# plt.ylabel("Frequency")
+# plt.show()
+
+# plt.figure(figsize=(8, 6))
+# sns.boxplot(x=df["Salary"], color="lightblue")
+# plt.title("Salary Boxplot")
+# plt.xlabel("Salary")
+
+# plt.show()
+
+
+# Salary distribution by Gender
+# print("\n Salary distribution by Gender:")
+# plt.figure(figsize=(10, 6))
+# sns.histplot(
+#     data=df,
+#     x="Salary",
+#     hue="Gender",
+#     bins=30,
+#     kde=True
+# )
+# plt.title("Salary Distribution by Gender")
+# plt.xlabel("Salary")
+# plt.ylabel("Frequency")
+# plt.show()
+
+
+# Average salary by department
+department_salary = df.groupby("Department")["Salary"].mean().sort_values(ascending=False)
+print("\n Average salary by department:")
+print(department_salary)
+
+# Visualize average salary by department
+# plt.figure(figsize=(10, 6))
+
+# colors = ["skyblue", "orange", "green", "red", "purple", "gold", "pink"]
+
+# department_salary.plot(kind="bar", color=colors[:len(department_salary)])
+
+# plt.title("Average Salary by Department")
+# plt.xlabel("Department")
+# plt.ylabel("Avergae Salary")
+
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+
+# plt.show()
+
+
+# Department employment count
+department_employment = df.groupby("Department").size()
+print("\n Department employment count:")
+print(department_employment)
+
+plt.figure(figsize=(10, 6))
+
+colors = [
+    "red",
+    "blue",
+    "green",
+    "orange",
+    "purple",
+    "yellow"
+]
+
+department_employment.plot(kind="bar", color=colors[:len(department_employment)])
+
+plt.title("Number of Employees by Department")
+plt.xlabel("Department")
+plt.ylabel("Number of Employees")
+
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+plt.show()
