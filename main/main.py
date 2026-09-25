@@ -238,4 +238,21 @@ plt.title("Experience vs Salary by Department")
 plt.xlabel("Experience (Years)")
 plt.ylabel("Salary")
 
+# plt.show()
+
+# Adding the trend line to the scatter plot
+plt.figure(figsize=(10, 6))
+
+sns.regplot(
+    data=df,
+    x="Experience_Years",
+    y="Salary",
+    scatter_kws={"s": 50, "alpha": 0.5},
+    line_kws={"color": "red", "lw": 2}
+)
+
+plt.title("Experience vs Salary with Trend Line")
+plt.xlabel("Experience (Years)")
+plt.ylabel("Salary")
+
 plt.show()
