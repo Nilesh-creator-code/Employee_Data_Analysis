@@ -255,4 +255,21 @@ plt.title("Experience vs Salary with Trend Line")
 plt.xlabel("Experience (Years)")
 plt.ylabel("Salary")
 
+# plt.show()
+
+# Avergae Salary byb performance score
+
+performance_salary = df.groupby("Performance_Score")["Salary"].mean().sort_values(ascending=False)
+print("\n Average Salary by Performance Score:")
+print(performance_salary)
+
+# Now i create bar chart of it
+plt.figure(figsize=(8, 5))
+
+performance_salary.plot(kind="bar", color="lightgreen")
+plt.title("Average Salary by Performance Score")
+plt.xlabel("Performance Score")
+plt.ylabel("Average Salary")
+
+plt.tight_layout()
 plt.show()
