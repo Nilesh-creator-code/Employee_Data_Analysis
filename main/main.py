@@ -297,4 +297,14 @@ sns.scatterplot(
 )
 
 plt.title("Experience vs Salary by Department")
-plt.show()
+# plt.show()
+
+# Categorize based on salary ranges
+salary_bins = [0, 50000, 100000, 150000, 200000, np.inf]
+salary_labels = ["<50k", "50k-100k", "100k-150k", "150k-200k", ">200k"]
+df["Salary_Range"] = pd.cut(df["Salary"], bins=salary_bins, labels=salary_labels)
+
+print("\n Salary Range Distribution:")
+print(df["Salary_Range"].value_counts())
+print(df[["Employee_ID", "Salary", "Salary_Range"]].head(10))
+
