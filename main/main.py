@@ -272,4 +272,29 @@ plt.xlabel("Performance Score")
 plt.ylabel("Average Salary")
 
 plt.tight_layout()
+# plt.show()
+
+# Now we do the correlation analysis
+numeric_df = df[["Age", "Experience_Years", "Salary", "Performance_Score"]]
+
+correlation = numeric_df.corr()
+print("\n Correlation Analysis:")
+print(correlation)
+
+# Correlation of experience and salary
+experience_salary_corr = df["Experience_Years"].corr(df["Salary"])
+print(f"\n Correlation between Experience and Salary: {experience_salary_corr:.2f}")
+
+plt.figure(figsize=(8, 6))
+# sns.heatmap(correlation, annot=True, cmap="coolwarm", fmt=".2f")
+
+sns.scatterplot(
+    data=df,
+    x="Experience_Years",
+    y="Salary",
+    # hue="Department",
+    # palette="Set1"
+)
+
+plt.title("Experience vs Salary by Department")
 plt.show()
